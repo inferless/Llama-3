@@ -1,14 +1,20 @@
-# Llama3
-Llama3 is a LLM released by Meta. In this template we will import Llama3 on Inferless.
+# Tutorial - Deploy Llama-3 8B using Inferless
+Meta releases the [Llama 3](https://llama.meta.com/llama3/), the latest open LLM models in the Llama family. The [Llama 3](https://huggingface.co/collections/meta-llama/meta-llama-3-66214712577ca38149ebb2b6) models were trained on  8x more data on over 15 trillion tokens. It has a context length of 8K tokens and increases the vocabulary size of the tokenizer to tokenizer to 128,256 (from 32K tokens in the previous version).
 
-## Prerequisites
-- **Git**. You would need git installed on your system if you wish to customize the repo after forking.
-- **Python>=3.8**. You would need Python to customize the code in the app.py according to your needs.
-- **Curl**. You would need Curl if you want to make API calls from the terminal itself.
+In this tutorial we will deploy [LLama-3 8B](https://huggingface.co/meta-llama/Meta-Llama-3-8B).
 
-  ---
-## Quick Start
-Here is a quick start to help you get up and running with this template on Inferless.
+## TL;DR:
+
+- Deployment of Meta-Llama-3-8B-hf model using [vLLM](https://github.com/vllm-project/vllm).
+- By using the Audiocraft, you can expect an average latency of `1.63 sec` and throughput of 78.65 tokens per second. This setup has an average cold start time of `13.30 sec`.
+- Dependencies defined in `inferless-runtime-config.yaml`.
+- GitHub/GitLab template creation with `app.py`, `inferless-runtime-config.yaml` and `inferless.yaml`.
+- Model class in `app.py` with `initialize`, `infer`, and `finalize` functions.
+- Custom runtime creation with necessary system and Python packages.
+- Model import via GitHub with `input_schema.py` file.
+- Recommended GPU: NVIDIA A100 for optimal performance.
+- Custom runtime selection in advanced configuration.
+- Final review and deployment on the Inferless platform.
 
 ### Fork the Repository
 Get started by forking the repository. You can do this by clicking on the fork button in the top right corner of the repository page.
