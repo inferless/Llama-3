@@ -1,21 +1,23 @@
-import transformers
-import torch
-
+from vllm import LLM, SamplingParams
+from huggingface_hub import snapshot_download
+from pathlib import Path
 
 class InferlessPythonModel:
     def initialize(self):
-        self.model_id = "Undi95/Meta-Llama-3-8B-hf"
-        self.pipeline = transformers.pipeline(
-            "text-generation",
-            model=self.model_id,
-            model_kwargs={"torch_dtype": torch.bfloat16},
-            device_map="auto"
-        )
+        model_id = "Undi95/Meta-Llama-3-8B-hf"  # Specify the model repository ID
+        # Define sampling parameters for model generation
+        self.sampling_params = SamplingParams(temperature=0.7, top_p=0.95, max_tokens=128)
+        # Initialize the LLM object
+        self.llm = LLM(model=model_id)
+        
+    def infer(self,inputs):
+        prompts = inputs["prompt"]  # Extract the prompt from the input
+        result = self.llm.generate(prompts, self.sampling_params)
+        # Extract the generated text from the result
+        result_output = [output.outputs[0].text for output in result]
 
-    def infer(self, inputs):
-        prompt = inputs["prompt"]
-        result = self.pipeline(prompt)[0]['generated_text']
-        return {"generated_text": result}
+        # Return a dictionary containing the result
+        return {'generated_text': result_output[0]}
 
     def finalize(self):
-        self.pipeline = None
+        pass
