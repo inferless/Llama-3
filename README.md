@@ -6,7 +6,7 @@ In this tutorial we will deploy [LLama-3 8B](https://huggingface.co/meta-llama/M
 ## TL;DR:
 
 - Deployment of Meta-Llama-3-8B-hf model using [vLLM](https://github.com/vllm-project/vllm).
-- By using the Audiocraft, you can expect an average latency of `1.63 sec` and throughput of 78.65 tokens per second. This setup has an average cold start time of `13.30 sec`.
+- You can expect an average latency of `1.63 sec` and throughput of 78.65 tokens per second. This setup has an average cold start time of `13.30 sec`.
 - Dependencies defined in `inferless-runtime-config.yaml`.
 - GitHub/GitLab template creation with `app.py`, `inferless-runtime-config.yaml` and `inferless.yaml`.
 - Model class in `app.py` with `initialize`, `infer`, and `finalize` functions.
